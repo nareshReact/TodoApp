@@ -27302,7 +27302,9 @@
 	      isLoading: true,
 	      errorMessage: undefined
 	    });
+
 	    openWeatherMap.getTemp(location).then(function (temp) {
+	      debugger;
 	      that.setState({
 	        location: location,
 	        temp: temp,
@@ -27311,9 +27313,8 @@
 	    }, function (errorMessage) {
 	      that.setState({
 	        isLoading: false,
-	        errorMessage: e.message
+	        errorMessage: errorMessage.message
 	      });
-	      alert(errorMessage);
 	    });
 	  },
 	  render: function render() {
@@ -27328,7 +27329,7 @@
 	      if (isLoading) {
 	        return React.createElement(
 	          'h3',
-	          { classame: 'text-center' },
+	          { className: 'text-center' },
 	          'Fetching weather...'
 	        );
 	      } else if (temp && location) {
@@ -27337,7 +27338,7 @@
 	    }
 	    function renderError() {
 	      if (typeof errorMessage === 'string') {
-	        return React.createElement(errorModal.jsx, null);
+	        return React.createElement('errorModal', { message: errorMessage });
 	      }
 	    }
 	    // var temp = this.state.temp;
@@ -27456,7 +27457,8 @@
 	        return res.data.main.temp;
 	      }
 	    }, function (err) {
-	      throw new Error(err.response.data.message);
+	      // throw new Error(err.response.data.message);
+	      throw new Error('unable to fetch weather for that location');
 	      res.data.cod = '';
 	      res.data.message = '';
 	    });
@@ -28951,6 +28953,15 @@
 	var errorModal = React.createClass({
 	  displayName: 'errorModal',
 
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      title: 'Error'
+	    };
+	  },
+	  propTypes: {
+	    title: React.PropTypes.string,
+	    message: React.PropTypes.string.isRequired
+	  },
 
 	  componentDidMount: function componentDidMount() {
 	    var modal = new Foundation.Reveal($('#error-modal'));
@@ -28963,12 +28974,12 @@
 	      React.createElement(
 	        'h4',
 	        null,
-	        'Some Title'
+	        title
 	      ),
 	      React.createElement(
 	        'p',
 	        null,
-	        ' our error message'
+	        message
 	      ),
 	      React.createElement(
 	        'p',
