@@ -27304,7 +27304,7 @@
 	    });
 
 	    openWeatherMap.getTemp(location).then(function (temp) {
-	      debugger;
+
 	      that.setState({
 	        location: location,
 	        temp: temp,
@@ -27336,6 +27336,7 @@
 	        return React.createElement(WeatherMessage, { temp: temp, location: location });
 	      }
 	    }
+	    debugger;
 	    function renderError() {
 	      if (typeof errorMessage === 'string') {
 	        return React.createElement('errorModal', { message: errorMessage });
@@ -28967,7 +28968,13 @@
 	    var modal = new Foundation.Reveal($('#error-modal'));
 	    modal.open();
 	  },
+
 	  render: function render() {
+	    var _props = this.props;
+	    var title = _props.title;
+	    var message = _props.message;
+
+	    alert(message);
 	    return React.createElement(
 	      'div',
 	      { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },

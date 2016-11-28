@@ -43,6 +43,7 @@ var Weather = React.createClass({
          return <WeatherMessage temp={temp} location={location} />;
        }
      }
+     debugger;
      function renderError (){
        if (typeof errorMessage === 'string') {
          return (
