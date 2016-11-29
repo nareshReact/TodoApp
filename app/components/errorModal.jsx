@@ -1,6 +1,6 @@
 var React = require('react');
 
-var errorModal = React.createClass({
+var ErrorModal = React.createClass({
   getDefaultProps: function () {
     return {
       title: 'Error'
@@ -18,7 +18,7 @@ var errorModal = React.createClass({
 
   render: function() {
     var {title, message} = this.props;
-    alert(message);
+  //  alert(message);
     return (
       <div id = "error-modal" className="reveal tiny text-center" data-reveal="">
          <h4>{title}</h4>
@@ -35,4 +35,4 @@ var errorModal = React.createClass({
   }
 
 });
-module.exports = errorModal;
+module.exports = ErrorModal;

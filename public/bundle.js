@@ -27284,8 +27284,8 @@
 	var React = __webpack_require__(8);
 	var WeatherForm = __webpack_require__(245);
 	var WeatherMessage = __webpack_require__(246);
-	var openWeatherMap = __webpack_require__(247);
-	var errorModal = __webpack_require__(273);
+	var OpenWeatherMap = __webpack_require__(247);
+	var ErrorModal = __webpack_require__(273);
 	var Weather = React.createClass({
 	  displayName: 'Weather',
 
@@ -27303,7 +27303,7 @@
 	      errorMessage: undefined
 	    });
 
-	    openWeatherMap.getTemp(location).then(function (temp) {
+	    OpenWeatherMap.getTemp(location).then(function (temp) {
 
 	      that.setState({
 	        location: location,
@@ -27339,7 +27339,7 @@
 	    debugger;
 	    function renderError() {
 	      if (typeof errorMessage === 'string') {
-	        return React.createElement('errorModal', { message: errorMessage });
+	        return React.createElement(ErrorModal, { message: errorMessage });
 	      }
 	    }
 	    // var temp = this.state.temp;
@@ -28951,8 +28951,8 @@
 
 	var React = __webpack_require__(8);
 
-	var errorModal = React.createClass({
-	  displayName: 'errorModal',
+	var ErrorModal = React.createClass({
+	  displayName: 'ErrorModal',
 
 	  getDefaultProps: function getDefaultProps() {
 	    return {
@@ -29001,7 +29001,7 @@
 	  }
 
 	});
-	module.exports = errorModal;
+	module.exports = ErrorModal;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },

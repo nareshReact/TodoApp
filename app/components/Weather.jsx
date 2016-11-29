@@ -1,8 +1,8 @@
 var React = require('react');
 var WeatherForm = require('./WeatherForm.jsx');
 var WeatherMessage = require('./WeatherMessage.jsx');
-var openWeatherMap = require('./openWeatherMap.jsx');
-var errorModal = require('./errorModal.jsx');
+var OpenWeatherMap = require('./OpenWeatherMap.jsx');
+var ErrorModal = require('./ErrorModal.jsx');
 var Weather = React.createClass({
   getInitialState: function () {
      return {
@@ -18,7 +18,7 @@ var Weather = React.createClass({
     errorMessage: undefined
    });
 
-    openWeatherMap.getTemp(location).then(function (temp) {
+    OpenWeatherMap.getTemp(location).then(function (temp) {
 
        that.setState({
          location: location,
@@ -47,7 +47,7 @@ var Weather = React.createClass({
      function renderError (){
        if (typeof errorMessage === 'string') {
          return (
-           <errorModal message={errorMessage}/>
+           <ErrorModal message={errorMessage}/>
          )
        }
      }
