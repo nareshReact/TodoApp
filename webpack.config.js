@@ -21,7 +21,7 @@ module.exports = {
   reslove: {
     root: __dirname,
     alias: {
-
+      
     },
     extensions: ['','.js','.jsx']
   },

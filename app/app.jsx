@@ -10,6 +10,9 @@ var Examples = require('./components/Examples.jsx');
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
 
+// Adding custom css section 7 lecture 58
+//require('style!css!app/styles/app.css')
+
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
