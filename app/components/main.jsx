@@ -1,13 +1,17 @@
 var React = require('react');
-var Nav = require('./Nav.jsx');
+var Navigation = require('./Navigation.jsx');
+
+
 
 var Main = React.createClass({
    render:function(){
      return(
        <div>
-       <Nav />
-         <div className="row">
-             <div className="columns medium-6 large-4 small-centered">
+
+         <div >
+             <div >
+               <Navigation />
+               <p>Main.jsx Rendered</p>
                {this.props.children}
              </div>
          </div>
