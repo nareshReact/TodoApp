@@ -105,7 +105,7 @@
 
 	var Main = __webpack_require__(253);
 
-	//load foundation
+	//load foundations
 	__webpack_require__(255);
 	$(document).foundation();
 
