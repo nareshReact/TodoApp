@@ -21,7 +21,7 @@ module.exports = {
   reslove: {
     root: __dirname,
     alias: {
-      
+      Clock: 'app/components/Clock.jsx'
     },
     extensions: ['','.js','.jsx']
   },

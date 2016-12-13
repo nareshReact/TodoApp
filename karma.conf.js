@@ -3,6 +3,10 @@ var webpackConfig = require('./webpack.config.js');
 module.exports = function (config) {
 
   config.set({
+    webpack:webpackConfig,
+    webpackServer: {
+      noInfo: true
+    },
     browsers: ['Chrome'],
     singleRun: true,
     frameworks: ['mocha'],
@@ -15,11 +19,11 @@ module.exports = function (config) {
       mocha: {
         timeout: '5000'
       }
-    },
-    webpack: webpackConfig,
-    webpackServer: {
-        noInfo: true
     }
+    //webpack: webpackConfig,
+    //webpackServer: {
+    //    noInfo: true
+  //  }
 
   });
 
