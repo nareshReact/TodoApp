@@ -18,7 +18,7 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js'
   },
-  reslove: {
+  resolve: {
     root: __dirname,
     alias: {
       Clock: 'app/components/Clock.jsx'
