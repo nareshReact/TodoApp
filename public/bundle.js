@@ -108,11 +108,11 @@
 	var Countdown = __webpack_require__(256);
 
 	//load foundations
-	__webpack_require__(259);
+	__webpack_require__(260);
 	$(document).foundation();
 
 	// Adding custom css section 7 lecture 58
-	__webpack_require__(263);
+	__webpack_require__(264);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -27607,6 +27607,7 @@
 	var React = __webpack_require__(8);
 	var Clock = __webpack_require__(257);
 	var CountdownForm = __webpack_require__(258);
+	var Controls = __webpack_require__(259);
 
 	var Countdown = React.createClass({
 	  displayName: 'Countdown',
@@ -27623,8 +27624,18 @@
 	        case 'started':
 	          this.startTimer();
 	          break;
+	        case 'stopped':
+	          this.setState({ count: 0 });
+	        case 'paused':
+	          clearInterval(this.timer);
+	          this.timer = undefined;
+	          break;
 	      }
 	    }
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    clearInterval(this.timer);
+	    this.timer = undefined;
 	  },
 	  startTimer: function startTimer() {
 	    var _this = this;
@@ -27634,6 +27645,9 @@
 	      _this.setState({
 	        count: newCount >= 0 ? newCount : 0
 	      });
+	      if (newCount === 0) {
+	        _this.setState({ countdownStatus: 'stopped' });
+	      }
 	    }, 1000);
 	  },
 	  handleSetCountdown: function handleSetCountdown(seconds) {
@@ -27642,14 +27656,28 @@
 	      countdownStatus: 'started'
 	    });
 	  },
+	  handleStatusChange: function handleStatusChange(newStatus) {
+	    this.setState({ countdownStatus: newStatus });
+	  },
 	  render: function render() {
-	    var count = this.state.count;
+	    var _this2 = this;
 
+	    var _state = this.state,
+	        count = _state.count,
+	        countdownStatus = _state.countdownStatus;
+
+	    var renderControlArea = function renderControlArea() {
+	      if (countdownStatus !== 'stopped') {
+	        return React.createElement(Controls, { countdownStatus: countdownStatus, onStatusChange: _this2.handleStatusChange });
+	      } else {
+	        return React.createElement(CountdownForm, { onSetCountdown: _this2.handleSetCountdown });
+	      }
+	    };
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(Clock, { totalSeconds: count }),
-	      React.createElement(CountdownForm, { onSetCountdown: this.handleSetCountdown })
+	      renderControlArea()
 	    );
 	  }
 	});
@@ -27745,13 +27773,70 @@
 /* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var React = __webpack_require__(8);
+
+	var Controls = React.createClass({
+	  displayName: 'Controls',
+
+	  propTypes: {
+	    countdownStatus: React.PropTypes.string.isRequired,
+	    onStatusChange: React.PropTypes.func.isRequired
+	  },
+	  onStatusChange: function onStatusChange(newStatus) {
+	    var _this = this;
+
+	    return function () {
+	      _this.props.onStatusChange(newStatus);
+	    };
+	  },
+	  render: function render() {
+	    var _this2 = this;
+
+	    var countdownStatus = this.props.countdownStatus;
+
+	    var renderStartStopButton = function renderStartStopButton() {
+	      if (countdownStatus === 'started') {
+	        return React.createElement(
+	          'button',
+	          { className: 'button secondary', onClick: _this2.onStatusChange('paused') },
+	          'Pause'
+	        );
+	      } else if (countdownStatus === 'paused') {
+	        return React.createElement(
+	          'button',
+	          { className: 'button primary', onClick: _this2.onStatusChange('started') },
+	          'Start'
+	        );
+	      }
+	    };
+	    return React.createElement(
+	      'div',
+	      { className: 'controls' },
+	      renderStartStopButton(),
+	      React.createElement(
+	        'button',
+	        { className: 'button alert hollow', onClick: this.onStatusChange('stopped') },
+	        'Clear'
+	      )
+	    );
+	  }
+
+	});
+	module.exports = Controls;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(260);
+	var content = __webpack_require__(261);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(262)(content, {});
+	var update = __webpack_require__(263)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27768,10 +27853,10 @@
 	}
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(261)();
+	exports = module.exports = __webpack_require__(262)();
 	// imports
 
 
@@ -27782,7 +27867,7 @@
 
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports) {
 
 	/*
@@ -27838,7 +27923,7 @@
 
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -28090,16 +28175,16 @@
 
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(264);
+	var content = __webpack_require__(265);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(262)(content, {});
+	var update = __webpack_require__(263)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28116,15 +28201,15 @@
 	}
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(261)();
+	exports = module.exports = __webpack_require__(262)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".top-bar, .top-bar ul {\n  background-color: #333333; }\n\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inLine;\n  padding: 0; }\n\n.top-bar .active-link {\n  font-weight: bold; }\n\n.clock {\n  align-items: center;\n  background-color: #B5D0E2;\n  border: 2px solid #2099E8;\n  border-radius: 50%;\n  display: flex;\n  height: 14rem;\n  justify-content: center;\n  margin: 4rem auto;\n  width: 14rem; }\n\n.clock-text {\n  color: white;\n  font-size: 2.25rem;\n  font-weight: 300; }\n", ""]);
+	exports.push([module.id, ".top-bar, .top-bar ul {\n  background-color: #333333; }\n\n.top-bar .menu-text {\n  color: white; }\n\n.top-bar .menu > .menu-text > a {\n  display: inLine;\n  padding: 0; }\n\n.top-bar .active-link {\n  font-weight: bold; }\n\n.clock {\n  align-items: center;\n  background-color: #B5D0E2;\n  border: 2px solid #2099E8;\n  border-radius: 50%;\n  display: flex;\n  height: 14rem;\n  justify-content: center;\n  margin: 4rem auto;\n  width: 14rem; }\n\n.clock-text {\n  color: white;\n  font-size: 2.25rem;\n  font-weight: 300; }\n\n.controls {\n  display: flex;\n  justify-content: center; }\n  .controls .button {\n    padding: .75rem 3rem; }\n  .controls .button:first-child {\n    margin-right: 1.5rem; }\n", ""]);
 
 	// exports
 
