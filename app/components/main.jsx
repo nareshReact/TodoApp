@@ -7,11 +7,10 @@ var Main = React.createClass({
    render:function(){
      return(
        <div>
+           <Navigation />
+         <div className="row" >
+             <div className="column small-centered medium-6 large-4" >
 
-         <div >
-             <div >
-               <Navigation />
-               <p>Main.jsx Rendered</p>
                {this.props.children}
              </div>
          </div>
