@@ -7,7 +7,7 @@ var Countdown = require('./components/Countdown.jsx');
 
 
 //load foundations
-require('style!css!foundation-sites/dist/foundation.min.css')
+
 $(document).foundation();
 
 // Adding custom css section 7 lecture 58
