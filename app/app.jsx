@@ -11,6 +11,6 @@ $(document).foundation();
 require('style!css!sass!./styles/app.scss')
 
 ReactDOM.render(
-    <p>React boiler Plate2</p>,  
+    <p>React boiler Plate3</p>,  
     document.getElementById("app")
 );

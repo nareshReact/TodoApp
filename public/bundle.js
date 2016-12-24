@@ -101,7 +101,7 @@
 	ReactDOM.render(React.createElement(
 	    'p',
 	    null,
-	    'React boiler Plate2'
+	    'React boiler Plate3'
 	), document.getElementById("app"));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
