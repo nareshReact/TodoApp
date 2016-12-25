@@ -103,18 +103,16 @@
 	    IndexRoute = _require.IndexRoute,
 	    hashHistory = _require.hashHistory;
 
+	var TodoApp = __webpack_require__(253);
+
 	//load foundations
 
 	$(document).foundation();
 
 	// Adding custom css section 7 lecture 58
-	__webpack_require__(253);
+	__webpack_require__(254);
 
-	ReactDOM.render(React.createElement(
-	    'p',
-	    null,
-	    'React boiler Plate3'
-	), document.getElementById("app"));
+	ReactDOM.render(React.createElement(TodoApp, null), document.getElementById("app"));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
@@ -27482,13 +27480,35 @@
 /* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var React = __webpack_require__(8);
+
+	var TodoApp = React.createClass({
+	  displayName: 'TodoApp',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      'TodoApp.jsx'
+	    );
+	  }
+	});
+
+	module.exports = TodoApp;
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(254);
+	var content = __webpack_require__(255);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(256)(content, {});
+	var update = __webpack_require__(257)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27505,10 +27525,10 @@
 	}
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(255)();
+	exports = module.exports = __webpack_require__(256)();
 	// imports
 
 
@@ -27519,7 +27539,7 @@
 
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports) {
 
 	/*
@@ -27575,7 +27595,7 @@
 
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
