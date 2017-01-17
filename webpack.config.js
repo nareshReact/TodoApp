@@ -29,7 +29,8 @@ module.exports = {
     alias: {
       Clock: 'app/components/Clock.jsx',
       CountdownForm: 'app/components/CountdownForm.jsx',
-      actions:'app/actions/actions.jsx'
+      actions:'app/actions/actions.jsx',
+      reducers:'app/reducers/reducers.jsx'
     },
     extensions: ['','.js','.jsx']
   },
